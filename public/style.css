@@ -1,0 +1,17 @@
+*{
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+}
+
+.head{
+    height: 100px;
+    width: 100%;
+    background-color: black;
+    color: rgb(254, 254, 254);
+    border-top-left-radius: 50px;
+    border-bottom-right-radius:50px;
+}
