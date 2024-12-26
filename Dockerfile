@@ -1,23 +1,22 @@
-# Use the official Ubuntu base image
-FROM ubuntu:latest
+# Use the official Parrot OS base image
+FROM parrotsec/core:latest
 
 # Update the package list and install Node.js and npm
-RUN apt-get update
-RUN apt-get install -y nodejs
-RUN apt-get install -y  npm
-
+RUN apt-get update && \
+    apt-get install -y nodejs npm
 
 # Set the working directory
 WORKDIR /app/EDS
 
-# Copy files from the local directory to the container
+# Create and copy files to the public directory
 RUN mkdir public
 COPY ./public /app/EDS/public
 COPY server.js /app/EDS
-COPY package*.json /app/EDS/ 
 
+# Install required npm packages
 RUN npm install express ws node-pty
-# Expose port 300
+
+# Expose port 3000
 EXPOSE 3000
 
 # Command to run server.js

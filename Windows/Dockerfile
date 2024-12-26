@@ -1,17 +1,16 @@
-# Use the official Node.js Windows image
-FROM mcr.microsoft.com/windows/node:lts
+# Use the official Node.js image for Linux
+FROM node:16-slim
 
 # Set the working directory
-WORKDIR C:/app/EDS
+WORKDIR /app
 
-# Create the public directory and copy files from local
-RUN mkdir public
-COPY ./public C:/app/EDS/public
-COPY server.js C:/app/EDS
-COPY package*.json C:/app/EDS
+# Copy the necessary files into the container
+COPY ./public /app/public
+COPY ./server.js /app
+COPY ./package*.json /app
 
 # Install required npm packages
-RUN npm install express ws node-pty
+RUN npm install
 
 # Expose port 3000
 EXPOSE 3000
